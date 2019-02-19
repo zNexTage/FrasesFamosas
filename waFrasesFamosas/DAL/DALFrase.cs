@@ -141,8 +141,8 @@ namespace waFrasesFamosas.DAL
                 {
                     obj.Id = Convert.ToInt32(reader["ID"]);
                     obj.Frase = Convert.ToString(reader["FRASE"]);
-                    obj.FKAutor = Convert.ToString(reader["NOME_AUTOR"]);
-                    obj.FKCategoria = Convert.ToString(reader["CATEGORIA"]);
+                    obj.getAutorName = Convert.ToString(reader["NOME_AUTOR"]);
+                    obj.getCategoriaName = Convert.ToString(reader["CATEGORIA"]);
                 }
                 return obj;
 
