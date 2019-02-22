@@ -25,6 +25,7 @@ function InserirCategoria() {
             success: function () {
                 modalMessage('Aviso', 'Categoria Adicionada com Sucesso');
                 LimparCampos();
+                SelecionarCategorias();
             },
             error: function () {
                 modalMessage('Atenção', 'Ocorreu um erro');
@@ -46,7 +47,7 @@ function SelecionarCategorias() {
             var arr = [];
             $.each(DataOption, function (key, value) {
                 var aux = [];
-                aux = ["" + value.Id + "", "" + value.Nome + "", "<button data-idCat=" + value.Id + " type='button'  id=" + value.Id + " onClick= '' class='btn btn-info form-control btnLiberar'>Editar <i class='glyphicon glyphicon-pencil'/></button>", "<button data-idCat=" + value.Id + " type='button'  id=" + value.Id + " onClick= 'Editar(this)' class='btn btn-danger form-control btnRemover'>Remover <i class='glyphicon glyphicon-pencil'/></button>"]
+                aux = ["" + value.Id + "", "" + value.Nome + "", "<button data-idcat=" + value.Id + " type='button'  onClick= 'Editar(this)' class='btn btn-info form-control btnLiberar'>Editar <i class='glyphicon glyphicon-pencil'/></button>", "<button data-idCat=" + value.Id + " type='button'  id=" + value.Id + " onClick= 'Remover(this)' class='btn btn-danger form-control btnRemover'>Remover <i class='glyphicon glyphicon-pencil'/></button>"]
                 arr.push(aux);
             });
 
@@ -104,6 +105,42 @@ function SelecionarCategorias() {
 
 function Editar(obj) {
 
+    var Id = $(obj).data('idcat');
+    var Categoria = { Id: Id };
+    $.ajax({
+        url: "Categoria.aspx/SelecionarCategoriaID",
+        dataType: "JSON",
+        type: "POST",
+        data: JSON.stringify(Categoria),
+        contentType: "Application/JSON; charset=utf-8",
+        success: function (data) {            
+            ModalCategoria(data.d.Id, data.d.Nome, 0);
+        },
+        error: function () {
+            modalMessage('Aviso', 'Um erro aconteceu!!');
+        }
+        
+
+    })
+}
+function Remover(obj) {
+    var Id = $(obj).data('idcat');
+    var Categoria = { Id: Id };
+    $.ajax({
+        url: "Categoria.aspx/SelecionarCategoriaID",
+        dataType: "JSON",
+        type: "POST",
+        data: JSON.stringify(Categoria),
+        contentType: "Application/JSON; charset=utf-8",
+        success: function (data) {
+            ModalCategoria(data.d.Id, data.d.Nome, 1);
+        },
+        error: function () {
+            modalMessage('Aviso', 'Um erro aconteceu!!');
+        }
+
+
+    })
 }
 
 

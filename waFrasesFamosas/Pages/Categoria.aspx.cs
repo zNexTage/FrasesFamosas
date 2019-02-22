@@ -26,6 +26,21 @@ namespace waFrasesFamosas.Pages
         {
             return DALCategoria.ListarCategorias();
         }
+        [WebMethod]
+        public static clsCategoria SelecionarCategoriaID(int Id)
+        {
+            return DALCategoria.ListarPorID(Id);
+        }
+        [WebMethod]
+        public static void AtualizarCategoria(int Id, string Nome)
+        {
+            DALCategoria.Alterar(Id, Nome);
+        }
+        [WebMethod]
+        public static void RemoverCategoria(int Id)
+        {
+            DALCategoria.Deletar(Id);
+        }
 
     }
 }

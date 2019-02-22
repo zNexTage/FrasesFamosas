@@ -33,7 +33,7 @@ namespace waFrasesFamosas.DAL
                 cmd.Dispose();
             }
         }
-        public static void Alterar(clsCategoria obj)
+        public static void Alterar(int Id, string Nome)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
 
@@ -41,8 +41,8 @@ namespace waFrasesFamosas.DAL
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", obj.Id);
-                cmd.Parameters.AddWithValue("@CATEGORIA", obj.Nome);
+                cmd.Parameters.AddWithValue("@ID", Id);
+                cmd.Parameters.AddWithValue("@CATEGORIA", Nome);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -131,12 +131,11 @@ namespace waFrasesFamosas.DAL
                 throw new Exception(ex.Message);
             }
         }
-        public clsCategoria ListarPorID(int id)
+        public static  clsCategoria ListarPorID(int id)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
-
             SqlCommand cmd = new SqlCommand("SPR_LISTAR_POR_ID_CATEGORIA", con);
-            clsCategoria obj = new clsCategoria();
+            clsCategoria getCat = new clsCategoria();
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -146,10 +145,12 @@ namespace waFrasesFamosas.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    obj.Id = Convert.ToInt32(reader["ID"]);
+                    clsCategoria obj = new clsCategoria();
+                    obj.Id = Convert.ToInt32(reader["ID_CATEGORIA"]);
                     obj.Nome = Convert.ToString(reader["CATEGORIA"]);
+                    getCat = obj;
                 }
-                return obj;
+                return getCat;
 
             }
             catch (Exception ex)

@@ -10,9 +10,9 @@
     
     <link href="DataTables/datatables.min.css" rel="stylesheet" />
     <script src="../DataTables/datatables.min.js"></script>
-    <script src="../DataTable/js/jquery.dataTables.min.js"></script>
-    <link href="DataTable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <script src="../DataTable/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../DataTables/js/jquery.dataTables.min.js"></script>
+    <link href="DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="../DataTables/js/dataTables.bootstrap4.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>WEB Frases</title>
 
@@ -60,7 +60,7 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header">                                                                                                                                                                                      
                         <h5 class="modal-title" id="header"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -80,14 +80,15 @@
 
 </body>
 
-
 <script>
-    function modalMessage(header, body) {
-        document.getElementById("header").innerHTML = header;
+    function modalMessage(Header, body) {
+        document.getElementById("header").innerHTML = Header;
         document.getElementById("body").innerHTML = body;
 
-        $("#myModal").modal('show');
-
+        $('#myModal').modal('show');
     }
 </script>
+
+
+
 </html>
