@@ -76,7 +76,41 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\Estilo.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="DataTables\css\dataTables.foundation.css" />
+    <Content Include="DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="DataTables\css\dataTables.semanticui.css" />
+    <Content Include="DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="DataTables\css\jquery.dataTables.css" />
+    <Content Include="DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="DataTables\datatables.css" />
+    <Content Include="DataTables\datatables.js" />
+    <Content Include="DataTables\datatables.min.css" />
+    <Content Include="DataTables\datatables.min.js" />
+    <Content Include="DataTables\images\sort_asc.png" />
+    <Content Include="DataTables\images\sort_asc_disabled.png" />
+    <Content Include="DataTables\images\sort_both.png" />
+    <Content Include="DataTables\images\sort_desc.png" />
+    <Content Include="DataTables\images\sort_desc_disabled.png" />
+    <Content Include="DataTables\js\dataTables.bootstrap.js" />
+    <Content Include="DataTables\js\dataTables.bootstrap.min.js" />
+    <Content Include="DataTables\js\dataTables.bootstrap4.js" />
+    <Content Include="DataTables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="DataTables\js\dataTables.foundation.js" />
+    <Content Include="DataTables\js\dataTables.foundation.min.js" />
+    <Content Include="DataTables\js\dataTables.jqueryui.js" />
+    <Content Include="DataTables\js\dataTables.jqueryui.min.js" />
+    <Content Include="DataTables\js\dataTables.semanticui.js" />
+    <Content Include="DataTables\js\dataTables.semanticui.min.js" />
+    <Content Include="DataTables\js\jquery.dataTables.js" />
+    <Content Include="DataTables\js\jquery.dataTables.min.js" />
+    <Content Include="Pages\Default.aspx" />
+    <Content Include="Pages\Categoria.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -101,11 +135,12 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
-    <Content Include="Scripts\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\JS\Categoria.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -132,15 +167,22 @@
     <Compile Include="Class\clsFrase.cs" />
     <Compile Include="Class\clsUsuario.cs" />
     <Compile Include="DAL\DALAutores.cs" />
-    <Compile Include="DAL\DalCategoria.cs" />
+    <Compile Include="DAL\DALCategoria.cs" />
     <Compile Include="DAL\DALFrase.cs" />
     <Compile Include="DAL\DALUsuario.cs" />
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="Pages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Categoria.aspx.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Categoria.aspx.designer.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -153,8 +195,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

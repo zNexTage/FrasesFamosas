@@ -4,10 +4,18 @@
 
 <html>
 <head runat="server">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    
+    <link href="DataTables/datatables.min.css" rel="stylesheet" />
+    <script src="../DataTables/datatables.min.js"></script>
+    <script src="../DataTable/js/jquery.dataTables.min.js"></script>
+    <link href="DataTable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="../DataTable/js/dataTables.bootstrap4.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>WEB Frases</title>
 
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,12 +37,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Autores</a>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">Frases</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Categorias</a>
-                            </li>                           
+                                <a class="nav-link" href="Categoria.aspx">Categorias</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -47,7 +55,39 @@
             </main>
             <footer>
             </footer>
+
         </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="header"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="body"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
+
 </body>
+
+
+<script>
+    function modalMessage(header, body) {
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("body").innerHTML = body;
+
+        $("#myModal").modal('show');
+
+    }
+</script>
 </html>

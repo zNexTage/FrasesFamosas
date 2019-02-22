@@ -9,16 +9,17 @@ using System.Configuration;
 using waFrasesFamosas.Class;
 namespace waFrasesFamosas.DAL
 {
-    public class DalCategoria
+    public class DALCategoria
     {
-        public void Inserir(clsCategoria obj)
+        public static void Inserir(string Nome)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_INSERIR_CATEGORIA", con);
             try
-            {              
+            {
+                clsCategoria obj = new clsCategoria();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CATEGORIA", obj.Nome);
+                cmd.Parameters.AddWithValue("@CATEGORIA", Nome);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -32,9 +33,10 @@ namespace waFrasesFamosas.DAL
                 cmd.Dispose();
             }
         }
-        public void Alterar(clsCategoria obj)
+        public static void Alterar(clsCategoria obj)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+
             SqlCommand cmd = new SqlCommand("SPR_ATUALIZAR_CATEGORIA", con);
             try
             {
@@ -54,9 +56,10 @@ namespace waFrasesFamosas.DAL
                 cmd.Dispose();
             }
         }
-        public void Deletar(int id)
+        public static void Deletar(int id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+
             SqlCommand cmd = new SqlCommand("SPR_DELETAR_CATEGORIA", con);
             try
             {
@@ -78,28 +81,43 @@ namespace waFrasesFamosas.DAL
         //Ocorre uma sobrecarga dos metodos Localizar. Se não for passado nenhum parametro ele ira executar o metodo
         //abaixo, pois não possui parametros. Caso tenha ele irá executar o que possui.
         
-        public DataTable Localizar()
+        public static List<clsCategoria> ListarCategorias()
         {
-            //SqlCommand cmd = new SqlCommand("SPR_LISTAR_CATEGORIA", con);
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
-            DataTable tabela = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBL_CATEGORIAS", con);
+            //
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SPR_LISTAR_CATEGORIA", con);
+            List<clsCategoria> lista = new List<clsCategoria>();            
             try
-            {   
-                da.Fill(tabela);
-                return tabela;
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clsCategoria obj = new clsCategoria();
+                    obj.Id = Convert.ToInt32(reader["ID_CATEGORIA"]);
+                    obj.Nome = Convert.ToString(reader["CATEGORIA"]);
+                    lista.Add(obj);
+                }
+                return lista;
             }
+            
            
             catch (Exception ex)
             {
                 throw new Exception(ex.Message); 
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
             }
            
         }
         
         public DataTable Localizar(string valor)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+
             DataTable tabela = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBL_CATEGORIAS WHERE  CATEGORIA LIKE '% "+valor+"%'", con);
             try
@@ -115,7 +133,8 @@ namespace waFrasesFamosas.DAL
         }
         public clsCategoria ListarPorID(int id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+
             SqlCommand cmd = new SqlCommand("SPR_LISTAR_POR_ID_CATEGORIA", con);
             clsCategoria obj = new clsCategoria();
             try

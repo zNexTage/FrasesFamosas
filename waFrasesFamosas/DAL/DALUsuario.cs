@@ -10,7 +10,7 @@ using waFrasesFamosas.Class;
 
 namespace waFrasesFamosas.DAL
 {
-    public class DALUsuario
+    public class Usuario
     {
         public void Inserir(clsUsuario obj)
         {

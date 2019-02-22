@@ -9,7 +9,7 @@ using waFrasesFamosas.Class;
 
 namespace waFrasesFamosas.DAL
 {
-    public class DALAutores
+    public class Autores
     {
         public void Inserir(clsAutor obj)
         {

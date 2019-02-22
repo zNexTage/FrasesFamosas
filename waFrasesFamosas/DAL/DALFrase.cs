@@ -9,7 +9,7 @@ using waFrasesFamosas.Class;
 
 namespace waFrasesFamosas.DAL
 {
-    public class DALFrase
+    public class Frases
     {
         public void Inserir(clsFrase obj)
         {
