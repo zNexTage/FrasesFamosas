@@ -11,9 +11,9 @@ namespace waFrasesFamosas.DAL
 {
     public class Autores
     {
-        public void Inserir(clsAutor obj)
+        public  void Inserir(clsAutor obj)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_INSERIR_AUTOR", con);
             try
             {
@@ -37,7 +37,7 @@ namespace waFrasesFamosas.DAL
 
         public void Alterar(clsAutor obj)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_ATUALIZAR_AUTOR", con);
             try
             {
@@ -62,7 +62,7 @@ namespace waFrasesFamosas.DAL
 
         public void Deletar(int id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_DELETAR_AUTOR", con);
             try
             {
@@ -84,21 +84,39 @@ namespace waFrasesFamosas.DAL
         //Ocorre uma sobrecarga dos metodos Localizar. Se não for passado nenhum parametro ele ira executar o metodo
         //abaixo, pois não possui parametros. Caso tenha ele irá executar o que possui.
 
-        public DataTable Localizar()
+        public static List<clsAutor> SelecionarAutores()
         {
             //SqlCommand cmd = new SqlCommand("SPR_LISTAR_CATEGORIA", con);
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
-            DataTable tabela = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBL_AUTORES", con);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SPR_SELECIONAR_AUTORES", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            
+            List<clsAutor> lista = new List<clsAutor>();
             try
             {
-                da.Fill(tabela);
-                return tabela;
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clsAutor autor = new clsAutor();
+                    autor.Id = Convert.ToInt32(reader["ID_AUTOR"]);
+                    autor.Nome = Convert.ToString(reader["NOME_AUTOR"]);
+                    autor.Origem = Convert.ToString(reader["ORIGEM_AUTOR"]);
+                    autor.Foto = Convert.ToString(reader["FOTO_AUTOR"]);
+                    lista.Add(autor);
+                }
+                return lista;
+               
             }
 
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
             }
 
         }

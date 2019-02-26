@@ -1,4 +1,4 @@
-﻿w<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Redirect.aspx.cs" Inherits="waFrasesFamosas.Redirect" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Redirect.aspx.cs" Inherits="waFrasesFamosas.Redirect" %>
 
 <!DOCTYPE html>
 

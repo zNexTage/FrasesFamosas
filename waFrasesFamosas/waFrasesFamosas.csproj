@@ -109,6 +109,7 @@
     <Content Include="DataTables\js\dataTables.semanticui.min.js" />
     <Content Include="DataTables\js\jquery.dataTables.js" />
     <Content Include="DataTables\js\jquery.dataTables.min.js" />
+    <Content Include="Pages\Autor.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Categoria.aspx" />
     <Content Include="Redirect.aspx" />
@@ -143,6 +144,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\JS\Autor.js" />
     <Content Include="Scripts\JS\Categoria.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -173,6 +175,13 @@
     <Compile Include="DAL\DALCategoria.cs" />
     <Compile Include="DAL\DALFrase.cs" />
     <Compile Include="DAL\DALUsuario.cs" />
+    <Compile Include="Pages\Autor.aspx.cs">
+      <DependentUpon>Autor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Autor.aspx.designer.cs">
+      <DependentUpon>Autor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -222,7 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IMAGENS\AUTORES\" />
-    <Folder Include="IMAGENS\SISITEMA\" />
+    <Folder Include="IMAGENS\SISTEMA\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
