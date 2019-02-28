@@ -40,19 +40,27 @@ namespace waFrasesFamosas.Pages
                 autores.Inserir(autor);
                 autor.Nome = "";
                 autor.Origem = "";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Cadastro Realizado');window.location.href='Autor.aspx';", true);
-                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Cadastro Realizado');window.location.href='Autor.aspx';", true);                
 
             }
 
         }
-
         [WebMethod]
         public static List<clsAutor> SelecionarAutores()
         {
             return Autores.SelecionarAutores();
         }
+        [WebMethod]
+        public static clsAutor SelecionarPeloId(int Id)
+        {
+            return Autores.SelecionarPeloId(Id);
+        }
+       
 
-
+        protected void btAlteracoes_Click(object sender, EventArgs e)
+        {
+            clsAutor obj = new clsAutor();
+            obj.Id = 
+        }
     }
 }

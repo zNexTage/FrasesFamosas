@@ -28,10 +28,63 @@
                 <label>
                     Confirmar:
                 </label>
-                <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnConfirmar_Click" UseSubmitBehavior="False"  />
+                <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnConfirmar_Click" UseSubmitBehavior="False" />
             </div>
-        </div>        
+        </div>
         <table id="tblAutor" class="table"></table>
     </div>
-    <script src="../Scripts/JS/Autor.js"></script>    
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="EditModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Header"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Autor: </label>
+                            <input type="text" class="form-control" id="txtEditNome" />
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                            <label>Origem: </label>
+                            <input type="text" class="form-control" id="txtEditOrigem" />
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                            <label>Atualiza foto: </label>
+                            <asp:FileUpload ID="editFoto" runat="server"  CssClass="form-control-file" />
+                        </div>
+                    </div>
+                     <div class="row">
+                        <input type="text" id="txtId" hidden style=""/>
+                    </div>
+                </div>
+                <div class="modal-footer">                    
+                    <asp:Button ID="btAlteracoes" runat="server" Text="Salvar Alterações" CssClas="btn btn-primary" OnClick="btAlteracoes_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/JS/Autor.js"></script>
+
+    <script>
+        $id = 0;
+        function modalEdit(id, nome, origem, foto) {
+            console.log(id + " " + nome + " " + origem + " " + foto);
+            $id = id;
+            $('#Header').text(nome);
+            $('#txtEditNome').val(nome);
+            $('#txtEditOrigem').val(origem);
+            $('#imgProfile').attr('src', foto);
+            $('#EditModal').modal('show');
+        }
+    </script>
 </asp:Content>

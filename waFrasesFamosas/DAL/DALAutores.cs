@@ -35,17 +35,16 @@ namespace waFrasesFamosas.DAL
             }
         }
 
-        public void Alterar(clsAutor obj)
+        public static void Atualizar(int id, string nome, string origem)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_ATUALIZAR_AUTOR", con);
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", obj.Id);
-                cmd.Parameters.AddWithValue("@NOME_AUTOR", obj.Nome);
-                cmd.Parameters.AddWithValue("@ORIGEM_AUTOR", obj.Origem);
-                cmd.Parameters.AddWithValue("@FOTO_AUTOR", obj.Foto);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@NOME_AUTOR", nome);
+                cmd.Parameters.AddWithValue("@ORIGEM_AUTOR", origem);                
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -137,24 +136,26 @@ namespace waFrasesFamosas.DAL
                 throw new Exception(ex.Message);
             }
         }
-        public clsAutor ListarPorID(int id)
+        public static clsAutor SelecionarPeloId(int Id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_LISTAR_POR_ID_AUTOR", con);
-            clsAutor obj = new clsAutor();
             try
             {
+                clsAutor obj = new clsAutor();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@ID", Id);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    obj.Id = Convert.ToInt32(reader["ID"]);
-                    obj.Nome = Convert.ToString(reader["NOME_AUTOR"]);
-                    obj.Origem = Convert.ToString(reader["ORIGEM_AUTOR"]);
-                    obj.Foto = Convert.ToString(reader["FOTO_AUTOR"]);
+                    clsAutor aut = new clsAutor();
+                    aut.Id = Convert.ToInt32(reader["ID_AUTOR"]);
+                    aut.Nome = Convert.ToString(reader["NOME_AUTOR"]);
+                    aut.Origem = Convert.ToString(reader["ORIGEM_AUTOR"]);
+                    aut.Foto = Convert.ToString(reader["FOTO_AUTOR"]);
+                    obj = aut;
                 }
                 return obj;
 

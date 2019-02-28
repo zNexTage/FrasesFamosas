@@ -112,6 +112,7 @@
     <Content Include="Pages\Autor.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Categoria.aspx" />
+    <Content Include="Pages\Frases.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -146,6 +147,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\JS\Autor.js" />
     <Content Include="Scripts\JS\Categoria.js" />
+    <Content Include="Scripts\JS\Frases.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -195,6 +197,13 @@
     </Compile>
     <Compile Include="Pages\Categoria.aspx.designer.cs">
       <DependentUpon>Categoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Frases.aspx.cs">
+      <DependentUpon>Frases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Frases.aspx.designer.cs">
+      <DependentUpon>Frases.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirect.aspx.cs">
