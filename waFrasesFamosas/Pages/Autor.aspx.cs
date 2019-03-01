@@ -60,7 +60,23 @@ namespace waFrasesFamosas.Pages
         protected void btAlteracoes_Click(object sender, EventArgs e)
         {
             clsAutor obj = new clsAutor();
-            obj.Id = 
+            obj.Id = Convert.ToInt32(Request.Form["txtEditId"]);
+            obj.Nome = Request.Form["txtEditNome"];
+            obj.Origem = Request.Form["txtEditOrigem"];
+            string caminhoServer = Server.MapPath("~/IMAGENS/AUTORES/");
+            string imgName = Path.GetFileName(editFoto.PostedFile.FileName);
+            obj.Foto = Path.Combine(caminhoServer, imgName);
+            editFoto.SaveAs(obj.Foto);
+            obj.Foto = "../IMAGENS/AUTORES/" + imgName;
+            Autores dalAut = new Autores();
+            dalAut.Atualizar(obj);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Atualização Realizada Com Sucesso');window.location.href='Autor.aspx';", true);
+
+        }
+        [WebMethod]
+        public static void RemoverAutor(int Id)
+        {
+            Autores.RemoverAutor(Id);
         }
     }
 }

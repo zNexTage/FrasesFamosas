@@ -70,7 +70,7 @@
                         <p id="body"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Fechar</button>
                     </div>
                 </div>
             </div>
@@ -84,6 +84,7 @@
 
                 $('#myModal').modal('show');
             }
+           
         </script>
 
     </form>

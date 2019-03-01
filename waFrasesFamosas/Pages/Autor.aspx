@@ -31,7 +31,13 @@
                 <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnConfirmar_Click" UseSubmitBehavior="False" />
             </div>
         </div>
-        <table id="tblAutor" class="table"></table>
+        <br />
+        
+        <h1 style="text-align:center">
+            Lista de autores
+        </h1>
+        <hr />  
+        <table id="tblAutor" class="table" style="width:100%"></table>
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="EditModal">
@@ -47,13 +53,13 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label>Autor: </label>
-                            <input type="text" class="form-control" id="txtEditNome" />
+                            <input type="text" class="form-control" id="txtEditNome" name="txtEditNome" />
                         </div>
                     </div>
                      <div class="row">
                         <div class="col-md-4">
                             <label>Origem: </label>
-                            <input type="text" class="form-control" id="txtEditOrigem" />
+                            <input type="text" class="form-control" id="txtEditOrigem" name="txtEditOrigem"/>
                         </div>
                     </div>
                      <div class="row">
@@ -63,11 +69,11 @@
                         </div>
                     </div>
                      <div class="row">
-                        <input type="text" id="txtId" hidden style=""/>
+                        <input type="text" id="txtId" name="txtEditId" hidden/>
                     </div>
                 </div>
                 <div class="modal-footer">                    
-                    <asp:Button ID="btAlteracoes" runat="server" Text="Salvar Alterações" CssClas="btn btn-primary" OnClick="btAlteracoes_Click" />
+                    <asp:Button ID="btAlteracoes" runat="server" Text="Salvar Alterações" CssClass="btn btn-primary" OnClick="btAlteracoes_Click" />
                 </div>
             </div>
         </div>
@@ -75,8 +81,7 @@
 
     <script src="../Scripts/JS/Autor.js"></script>
 
-    <script>
-        $id = 0;
+    <script>        
         function modalEdit(id, nome, origem, foto) {
             console.log(id + " " + nome + " " + origem + " " + foto);
             $id = id;
@@ -84,6 +89,7 @@
             $('#txtEditNome').val(nome);
             $('#txtEditOrigem').val(origem);
             $('#imgProfile').attr('src', foto);
+            $('#txtId').val(id);
             $('#EditModal').modal('show');
         }
     </script>

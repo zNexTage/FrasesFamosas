@@ -35,16 +35,17 @@ namespace waFrasesFamosas.DAL
             }
         }
 
-        public static void Atualizar(int id, string nome, string origem)
+        public  void Atualizar(clsAutor obj)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_ATUALIZAR_AUTOR", con);
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", id);
-                cmd.Parameters.AddWithValue("@NOME_AUTOR", nome);
-                cmd.Parameters.AddWithValue("@ORIGEM_AUTOR", origem);                
+                cmd.Parameters.AddWithValue("@ID", obj.Id);
+                cmd.Parameters.AddWithValue("@NOME_AUTOR", obj.Nome);
+                cmd.Parameters.AddWithValue("@ORIGEM_AUTOR", obj.Origem);                
+                cmd.Parameters.AddWithValue("@FOTO_AUTOR", obj.Foto);                
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -59,7 +60,7 @@ namespace waFrasesFamosas.DAL
             }
         }
 
-        public void Deletar(int id)
+        public static void RemoverAutor(int id)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_DELETAR_AUTOR", con);

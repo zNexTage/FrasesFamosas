@@ -13,7 +13,7 @@ function SelecionarAutores() {
             var arr = [];
             $.each(DataOption, function (key, value) {
                 var aux = [];
-                aux = ["" + value.Id + "", "" + value.Nome + "", "" + value.Origem + "", "<img width='200px' height='150px' src=" + value.Foto + ">", "<button data-id=" + value.Id + " class='btn btn-primary form-control' onclick='Editar(this);return false;'>Editar</button>", "<button data-id=" + value.Id + " class='btn btn-danger form-control'>Remover</button>"]
+                aux = ["" + value.Id + "", "" + value.Nome + "", "" + value.Origem + "", "<img width='180px' height='150px' src=" + value.Foto + ">", "<button data-id=" + value.Id + " class='btn btn-primary form-control' onclick='Editar(this);return false;'>Editar</button>", "<button data-id=" + value.Id + " onClick='Remover(this);return false;' class='btn btn-danger form-control'>Remover</button>"]
                 arr.push(aux);
             });
             $(document).ready(function () {
@@ -74,4 +74,27 @@ function Atualizar(id) {
         error: function () { }
 
     })
+}
+
+function Remover(obj) {
+    if (confirm("Deseja deletar este autor?")) {
+        var getId = $(obj).data('id');
+        var JSONid = { Id: getId };
+        $.ajax({
+            url: "Autor.aspx/RemoverAutor",
+            data: JSON.stringify(JSONid),
+            dataType: "JSON",
+            type: "POST",
+            contentType: "Application/JSON; charset=utf-8",
+            success: function () {              
+                $('#close').click(function () { window.location.reload() })
+                modalMessage('Sucesso!!', 'Autor deletado com sucesso');
+                
+            },
+            error: function () {
+                modalMessage('Erro!!', 'Não foi possivel deletar')
+            }
+        })
+    }
+  
 }
