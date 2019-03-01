@@ -9,18 +9,18 @@ using waFrasesFamosas.Class;
 
 namespace waFrasesFamosas.DAL
 {
-    public class Frases
+    public class DALFrases
     {
-        public void Inserir(clsFrase obj)
+        public static void InserirFrase(string Frase, int FKAutor, int FKCategoria)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_INSERIR_FRASE", con);
             try
-            {
+            {               
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FRASE", obj.Frase);
-                cmd.Parameters.AddWithValue("@FK_AUTOR", obj.FKAutor);
-                cmd.Parameters.AddWithValue("@FK_CATEGORIA", obj.FKCategoria);
+                cmd.Parameters.AddWithValue("@FRASE", Frase);
+                cmd.Parameters.AddWithValue("@FK_AUTOR", FKAutor);
+                cmd.Parameters.AddWithValue("@FK_CATEGORIA", FKCategoria);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -35,17 +35,17 @@ namespace waFrasesFamosas.DAL
             }
         }
 
-        public void Alterar(clsFrase obj)
+        public static void AtualizarFrase(int Id, string Frase, string FKAutor, string FKCategoria)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_ATUALIZAR_FRASE", con);
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", obj.Id);
-                cmd.Parameters.AddWithValue("@FRASE", obj.Frase);
-                cmd.Parameters.AddWithValue("@FK_AUTOR", obj.FKAutor);
-                cmd.Parameters.AddWithValue("@FK_CATEGORIA", obj.FKCategoria);
+                cmd.Parameters.AddWithValue("@ID", Id);
+                cmd.Parameters.AddWithValue("@FRASE", Frase);
+                cmd.Parameters.AddWithValue("@FK_AUTOR", FKAutor);
+                cmd.Parameters.AddWithValue("@FK_CATEGORIA", FKCategoria);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -60,9 +60,9 @@ namespace waFrasesFamosas.DAL
             }
         }
 
-        public void Deletar(int id)
+        public static void RemoverFrase(int id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_DELETAR_FRASE", con);
             try
             {
@@ -84,21 +84,38 @@ namespace waFrasesFamosas.DAL
         //Ocorre uma sobrecarga dos metodos Localizar. Se não for passado nenhum parametro ele ira executar o metodo
         //abaixo, pois não possui parametros. Caso tenha ele irá executar o que possui.
 
-        public DataTable Localizar()
-        {
-            //SqlCommand cmd = new SqlCommand("SPR_LISTAR_CATEGORIA", con);
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
-            DataTable tabela = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TBL_FRASES", con);
+        public static List<clsFrase> SelecionarFrases()
+        {          
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SPR_SELECIONAR_FRASES", con);
+            List<clsFrase> lista = new List<clsFrase>();
+            
             try
             {
-                da.Fill(tabela);
-                return tabela;
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clsFrase Frase = new clsFrase();
+                    Frase.Id = Convert.ToInt32(reader["ID_FRASE"]);
+                    Frase.Frase = Convert.ToString(reader["FRASE"]);
+                    Frase.getAutorName = Convert.ToString(reader["NOME_AUTOR"]);                    
+                    Frase.getCategoriaName = Convert.ToString(reader["CATEGORIA"]);                    
+                    lista.Add(Frase);
+                }
+                return lista;
+               
             }
 
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
             }
 
         }
@@ -124,25 +141,27 @@ namespace waFrasesFamosas.DAL
                 throw new Exception(ex.Message);
             }
         }
-        public clsFrase ListarPorID(int id)
+        public  static clsFrase SelecionarPeloId(int Id)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_LISTAR_POR_ID_FRASE", con);
             clsFrase obj = new clsFrase();
-            clsAutor aut = new clsAutor();
+           
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@ID", Id);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    obj.Id = Convert.ToInt32(reader["ID"]);
+                    obj.Id = Convert.ToInt32(reader["ID_FRASE"]);
                     obj.Frase = Convert.ToString(reader["FRASE"]);
                     obj.getAutorName = Convert.ToString(reader["NOME_AUTOR"]);
                     obj.getCategoriaName = Convert.ToString(reader["CATEGORIA"]);
+                    obj.FKAutor = Convert.ToInt32(reader["FK_AUTOR"]);
+                    obj.FKCategoria = Convert.ToInt32(reader["FK_CATEGORIA"]);
                 }
                 return obj;
 

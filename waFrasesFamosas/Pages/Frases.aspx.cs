@@ -25,5 +25,30 @@ namespace waFrasesFamosas.Pages
         {
             return DALCategoria.ListarCategorias();
         }
+        [WebMethod]
+        public static void InserirFrase(string Frase, int FKAutor, int FKCategoria)
+        {
+             DALFrases.InserirFrase(Frase, FKAutor, FKCategoria);
+        }
+        [WebMethod]
+        public static List<clsFrase> SelecionarFrases()
+        {
+            return DALFrases.SelecionarFrases();
+        }
+        [WebMethod]
+        public static clsFrase SelecionarPeloId(int Id)
+        {
+            return DALFrases.SelecionarPeloId(Id);
+        }
+        [WebMethod]
+        public static void AtualizarFrase(int Id, string Frase, string FKAutor, string FKCategoria)
+        {
+            DALFrases.AtualizarFrase(Id, Frase, FKAutor, FKCategoria);
+        }
+        [WebMethod]
+        public static void RemoverFrase(int Id)
+        {
+            DALFrases.RemoverFrase(Id);
+        }
     }
 }

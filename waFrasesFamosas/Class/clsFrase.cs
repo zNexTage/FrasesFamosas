@@ -13,5 +13,6 @@ namespace waFrasesFamosas.Class
         public int FKCategoria { get; set; }
         public string getAutorName { get; set; }
         public string getCategoriaName { get; set; }
+        public string getPhoto { get; set; }
     }
 }
