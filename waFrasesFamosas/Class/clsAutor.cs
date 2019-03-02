@@ -12,5 +12,15 @@ namespace waFrasesFamosas.Class
         public string Nome { get; set; }
         public string Origem { get; set; }
         public string Foto { get; set; }
+
+
+        private static string  PathForDelete;
+
+        public static string pathForDelete
+        {
+            get { return PathForDelete; }
+            set { PathForDelete = value; }
+        }
+
     }
 }

@@ -12,10 +12,10 @@ namespace waFrasesFamosas.Pages
 {
     public partial class Autor : System.Web.UI.Page
     {
-
+        public static string  FullPath;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            FullPath = Server.MapPath("~/IMAGENS/AUTORES/");
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace waFrasesFamosas.Pages
                 string imgFile = Path.GetFileName(fileFoto.PostedFile.FileName);
                 string caminho = Path.Combine(caminhoServer, imgFile);
                 fileFoto.SaveAs(caminho);
-                autor.Foto = "../IMAGENS/AUTORES/" + imgFile;
+                autor.Foto = imgFile;
                 Autores autores = new Autores();
                 autores.Inserir(autor);
                 autor.Nome = "";
@@ -67,7 +67,7 @@ namespace waFrasesFamosas.Pages
             string imgName = Path.GetFileName(editFoto.PostedFile.FileName);
             obj.Foto = Path.Combine(caminhoServer, imgName);
             editFoto.SaveAs(obj.Foto);
-            obj.Foto = "../IMAGENS/AUTORES/" + imgName;
+            obj.Foto =  imgName;
             Autores dalAut = new Autores();
             dalAut.Atualizar(obj);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Atualização Realizada Com Sucesso');window.location.href='Autor.aspx';", true);
@@ -76,7 +76,13 @@ namespace waFrasesFamosas.Pages
         [WebMethod]
         public static void RemoverAutor(int Id)
         {
+            Autores.SelecionarPeloId(Id);
+            clsAutor autor = new clsAutor();
+            string deleteFile = Path.Combine(Autor.FullPath + clsAutor.pathForDelete);
+            File.Delete(deleteFile);
             Autores.RemoverAutor(Id);
+
         }
+        
     }
 }

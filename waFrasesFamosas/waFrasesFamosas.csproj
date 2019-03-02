@@ -113,6 +113,7 @@
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Categoria.aspx" />
     <Content Include="Pages\Frases.aspx" />
+    <Content Include="Pages\Usuario.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -138,8 +139,10 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\wafrasesfamosas - FTP2.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -148,6 +151,7 @@
     <Content Include="Scripts\JS\Autor.js" />
     <Content Include="Scripts\JS\Categoria.js" />
     <Content Include="Scripts\JS\Frases.js" />
+    <Content Include="Scripts\JS\Usuario.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -156,7 +160,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -204,6 +210,13 @@
     </Compile>
     <Compile Include="Pages\Frases.aspx.designer.cs">
       <DependentUpon>Frases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirect.aspx.cs">

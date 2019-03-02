@@ -13,7 +13,7 @@ function SelecionarAutores() {
             var arr = [];
             $.each(DataOption, function (key, value) {
                 var aux = [];
-                aux = ["" + value.Id + "", "" + value.Nome + "", "" + value.Origem + "", "<img width='180px' height='150px' src=" + value.Foto + ">", "<button data-id=" + value.Id + " class='btn btn-primary form-control' onclick='Editar(this);return false;'>Editar</button>", "<button data-id=" + value.Id + " onClick='Remover(this);return false;' class='btn btn-danger form-control'>Remover</button>"]
+                aux = ["" + value.Id + "", "" + value.Nome + "", "" + value.Origem + "", "<img width='180px' height='150px' src='../IMAGENS/AUTORES/" + value.Foto + "'>", "<button data-id=" + value.Id + " class='btn btn-primary form-control' onclick='Editar(this);return false;'>Editar</button>", "<button data-id=" + value.Id + " onClick='Remover(this);return false;' class='btn btn-danger form-control'>Remover</button>"]
                 arr.push(aux);
             });
             $(document).ready(function () {

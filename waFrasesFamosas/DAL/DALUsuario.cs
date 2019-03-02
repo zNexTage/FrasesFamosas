@@ -10,11 +10,11 @@ using waFrasesFamosas.Class;
 
 namespace waFrasesFamosas.DAL
 {
-    public class Usuario
+    public class DALUsuario
     {
-        public void Inserir(clsUsuario obj)
+        public  static void Inserir(clsUsuario obj)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SPR_INSERIR_USUARIO", con);
             try
             {
@@ -85,16 +85,26 @@ namespace waFrasesFamosas.DAL
         //Ocorre uma sobrecarga dos metodos Localizar. Se não for passado nenhum parametro ele ira executar o metodo
         //abaixo, pois não possui parametros. Caso tenha ele irá executar o que possui.
 
-        public DataTable Localizar()
+        public static List<clsUsuario> Listar()
         {
-            //SqlCommand cmd = new SqlCommand("SPR_LISTAR_CATEGORIA", con);
-            SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["dbfrasesfamosas"]);
-            DataTable tabela = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT NOME_USUARIO, EMAIL_USUARIO * FROM TBL_USUARIOS", con);
+         
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SPR_SELECIONAR_USUARIOS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            List<clsUsuario> lista = new List<clsUsuario>();
             try
             {
-                da.Fill(tabela);
-                return tabela;
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clsUsuario user = new clsUsuario();
+                    user.Id = Convert.ToInt32(reader["ID_USUARIO"]);
+                    user.Nome = Convert.ToString(reader["NOME_USUARIO"]);
+                    user.Email = Convert.ToString(reader["EMAIL_USUARIO"]);
+                    lista.Add(user);
+                }
+                return lista;
             }
 
             catch (Exception ex)

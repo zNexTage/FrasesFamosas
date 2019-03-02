@@ -10,7 +10,7 @@ using waFrasesFamosas.Class;
 namespace waFrasesFamosas.DAL
 {
     public class Autores
-    {
+    {       
         public  void Inserir(clsAutor obj)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbfrasesfamosas"].ConnectionString);
@@ -103,6 +103,7 @@ namespace waFrasesFamosas.DAL
                     autor.Nome = Convert.ToString(reader["NOME_AUTOR"]);
                     autor.Origem = Convert.ToString(reader["ORIGEM_AUTOR"]);
                     autor.Foto = Convert.ToString(reader["FOTO_AUTOR"]);
+                    clsAutor.pathForDelete = autor.Foto;
                     lista.Add(autor);
                 }
                 return lista;
