@@ -86,9 +86,11 @@ function Remover(obj) {
             dataType: "JSON",
             type: "POST",
             contentType: "Application/JSON; charset=utf-8",
-            success: function () {              
-                $('#close').click(function () { window.location.reload() })
-                modalMessage('Sucesso!!', 'Autor deletado com sucesso');
+            success: function () { 
+                alert("Autor deletado com sucesso");
+                window.location.reload()
+                /*$('#close').click(function () { window.location.reload() })
+                modalMessage('Sucesso!!', 'Autor deletado com sucesso');*/
                 
             },
             error: function () {

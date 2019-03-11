@@ -16,14 +16,34 @@ namespace waFrasesFamosas.Pages
 
         }
         [WebMethod]
-        public static void CadastrarUsuario(clsUsuario Usuario)
+        public static bool ChecarEmail(clsUsuario Usuario)
         {
+            return DALUsuario.ChecarEmail(Usuario);
+        }
+        [WebMethod]
+        public static void CadastrarUsuario(clsUsuario Usuario)
+        {           
             DALUsuario.Inserir(Usuario);
         }
         [WebMethod]
         public static List<clsUsuario> SelecionarUsuarios()
         {
             return DALUsuario.Listar();
+        }
+        [WebMethod]
+        public static clsUsuario SelecionarUsuarioPeloID(clsUsuario Usuario)
+        {
+            return DALUsuario.ListarPorID(Usuario);
+        }
+        [WebMethod]
+        public static void AtualizarUsuario(clsUsuario Usuario)
+        {
+            DALUsuario.AtualizarUsuario(Usuario);
+        }
+        [WebMethod]
+        public static void RemoverUsuario(clsUsuario Usuario)
+        {
+            DALUsuario.RemoverUsuario(Usuario);
         }
 
     }
