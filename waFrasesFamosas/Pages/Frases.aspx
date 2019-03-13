@@ -42,6 +42,8 @@
                 </div>
             </div>
         </div>
+        <br />
+        <h1 style="text-align:center;">Lista de Frases</h1>
         <table id="tblFrases" class="table table-striped" style="width: 100%"></table>
     </div>
 

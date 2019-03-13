@@ -13,7 +13,41 @@ namespace waFrasesFamosas.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Boolean tipo = false;
+            try
+            {
+                if (Convert.ToInt32(Session["TIPO_USUARIO"]) == 1 && Session["Id"] != null)
+                {
+                    tipo = true;
+                    Response.Redirect("Default.aspx");
+                }
+                else
+                {
+                    tipo = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (tipo == true)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+                if(ex.Message != null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+            }
+            try
+            {               
+                if (Session["Id"] != null)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
         [WebMethod]
         public static bool ChecarEmail(clsUsuario Usuario)

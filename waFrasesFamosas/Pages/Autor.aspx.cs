@@ -1,21 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using waFrasesFamosas.Class;
 using waFrasesFamosas.DAL;
 namespace waFrasesFamosas.Pages
 {
     public partial class Autor : System.Web.UI.Page
     {
-        public static string  FullPath;
+        public static string FullPath;
         protected void Page_Load(object sender, EventArgs e)
         {
             FullPath = Server.MapPath("~/IMAGENS/AUTORES/");
+            try
+            {
+                if (Session["Id"] != null)
+                {
+                   
+                }
+            }
+            catch
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
@@ -40,7 +48,7 @@ namespace waFrasesFamosas.Pages
                 autores.Inserir(autor);
                 autor.Nome = "";
                 autor.Origem = "";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Cadastro Realizado');window.location.href='Autor.aspx';", true);                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('Cadastro Realizado');window.location.href='Autor.aspx';", true);
 
             }
 
@@ -55,7 +63,7 @@ namespace waFrasesFamosas.Pages
         {
             return Autores.SelecionarPeloId(Id);
         }
-       
+
 
         protected void btAlteracoes_Click(object sender, EventArgs e)
         {
@@ -67,6 +75,11 @@ namespace waFrasesFamosas.Pages
                 obj.Origem = Request.Form["txtEditOrigem"];
                 string caminhoServer = Server.MapPath("~/IMAGENS/AUTORES/");
                 string imgName = Path.GetFileName(editFoto.PostedFile.FileName);
+                if (imgName == "")
+                {
+                    var x = Autores.SelecionarPeloId(obj.Id);
+                    imgName = x.Foto;
+                }
                 obj.Foto = Path.Combine(caminhoServer, imgName);
                 editFoto.SaveAs(obj.Foto);
                 obj.Foto = imgName;
@@ -89,6 +102,6 @@ namespace waFrasesFamosas.Pages
             Autores.RemoverAutor(Id);
 
         }
-        
+
     }
 }

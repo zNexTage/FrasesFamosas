@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using waFrasesFamosas.Class;
@@ -16,17 +17,22 @@ namespace waFrasesFamosas
             {
                 if (Session["Id"] != null)
                 {
-                    clsUsuario Usuario = new clsUsuario();
-                    Usuario.Id = Convert.ToInt32(Session["Id"]);
-                    Usuario = DALUsuario.ListarPorID(Usuario);
-                    lblNomeUsuario.Text = Usuario.Nome;
+                    if (Convert.ToInt32(Session["TIPO_USUARIO"]) == 0)
+                    {
+
+                        clsUsuario Usuario = new clsUsuario();
+                        Usuario.Id = Convert.ToInt32(Session["Id"]);
+                        Usuario = DALUsuario.ListarPorID(Usuario);
+                        lblNomeUsuario.Text = Usuario.Nome;
+                    }
                 }
             }
-            catch 
+            catch
             {
                 Response.Redirect("~/Login.aspx");
             }
-           
+
         }
+
     }
 }

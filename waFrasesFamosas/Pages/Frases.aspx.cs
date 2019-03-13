@@ -13,7 +13,17 @@ namespace waFrasesFamosas.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (Session["Id"] != null)
+                {
 
+                }
+            }
+            catch
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
         [WebMethod]
         public static List<clsAutor> SelecionarAutores()

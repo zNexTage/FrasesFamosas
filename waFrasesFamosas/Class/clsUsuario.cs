@@ -12,5 +12,6 @@ namespace waFrasesFamosas.Class
         public string Email { get; set; }
         public string Senha { get; set; }
         public bool ChecarEmail { get; set; }
+        public int TipoUsuario { get; set; }
     }
 }

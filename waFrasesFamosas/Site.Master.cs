@@ -11,7 +11,17 @@ namespace waFrasesFamosas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Convert.ToInt32(Session["Id"]) == 0 )
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+            }
+            catch
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
     }
 }

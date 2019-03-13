@@ -209,6 +209,7 @@ namespace waFrasesFamosas.DAL
                     user.Id = Convert.ToInt32(reader["ID_USUARIO"]);
                     user.Nome = Convert.ToString(reader["NOME_USUARIO"]);
                     user.Email = Convert.ToString(reader["EMAIL_USUARIO"]);
+                    user.TipoUsuario = Convert.ToInt32(reader["TIPO_USUARIO"]);
                     Usuario = user;
                     return Usuario;
                 }

@@ -27,6 +27,14 @@ namespace waFrasesFamosas
             else
             {
                 var x = DALUsuario.Logar(Usuario);
+                if(x.TipoUsuario == 0)
+                {
+                    Session["TIPO_USUARIO"] = 0;
+                }
+                else
+                {
+                    Session["TIPO_USUARIO"] = 1;
+                }
                 if (x.Id != 0)
                 {
                     Session["Id"] = x.Id;                    
