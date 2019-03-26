@@ -119,7 +119,6 @@
     <Content Include="Pages\Categoria.aspx" />
     <Content Include="Pages\Frases.aspx" />
     <Content Include="Pages\Usuario.aspx" />
-    <Content Include="Redirect.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -148,6 +147,8 @@
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\wafrasesfamosas - Web Deploy2.pubxml" />
+    <None Include="Properties\PublishProfiles\webfrases - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\webfrases - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -238,13 +239,6 @@
       <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Redirect.aspx.cs">
-      <DependentUpon>Redirect.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Redirect.aspx.designer.cs">
-      <DependentUpon>Redirect.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

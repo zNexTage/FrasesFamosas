@@ -6,10 +6,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Login</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
     <link href="Content/CSS/Login.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
+    
 </head>
+
 <body>
     <form id="form1" runat="server">
         <div>
@@ -22,6 +25,10 @@
                     <input type="password" id="txtSenha" class="fadeIn third" name="senha" placeholder="Senha" />
                     <asp:Button ID="btnLogin" runat="server" class="fadeIn fourth" Text="Logar" OnClick="btnLogin_Click" />
                 </div>
+            </div>
+            <div class="container-fluid" style="text-align:center;">
+                <hr />
+                <button type="button" class="btn btn-link"  onclick="window.location.href='CadastrarUsuario.aspx'" style="text-decoration:none;">Clique aqui para se cadastrar!!</button>
             </div>
         </div>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -44,12 +51,13 @@
         </div>
 
         <script type="text/javascript">
+
             function modalMessage(Header, body) {
                 document.getElementById("header").innerHTML = Header;
                 document.getElementById("body").innerHTML = body;
 
                 $('#myModal').modal('show');
-            }      
+            }
         </script>
         <asp:PlaceHolder ID="phModal" runat="server"></asp:PlaceHolder>
     </form>

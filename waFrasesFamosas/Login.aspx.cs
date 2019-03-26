@@ -22,7 +22,8 @@ namespace waFrasesFamosas
             Usuario.Senha = Request.Form["senha"];
             if (Usuario.Email == "" || Usuario.Senha == "")
             {
-                Response.Write("<script>alert('Preencha todos os campos');window.location.href='Login.aspx'</script>");
+                //Response.Write("<script>alert('Preencha todos os campos');window.location.href='Login.aspx'</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "clientScript", "modalMessage('Atenção','Preencha todos os campos!!')", true);
             }
             else
             {
@@ -42,8 +43,8 @@ namespace waFrasesFamosas
                 }
                 else
                 {
-                    Response.Write("<script>alert('Usuário não encontrado, verifique as credenciais digitadas!!');window.location.href='Login.aspx'</script>");
-                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "modalMessage('Aviso', 'Usuário não encontrado, verifique as credenciais digitadas!!');", true);
+                    //Response.Write("<script>alert('Usuário não encontrado, verifique as credenciais digitadas!!');window.location.href='Login.aspx'</script>");
+                    ClientScript.RegisterStartupScript(this.GetType(), "clientScript", "modalMessage('Atenção','Usuário não encontrado, verifique as credenciais digitadas!!');", true);
                 }
             }
         }
